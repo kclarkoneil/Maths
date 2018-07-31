@@ -8,45 +8,52 @@
 
 #import <Foundation/Foundation.h>
 #import "AdditionQuestion.h"
+#import "InputHandler.h"
+#import "ScoreKeeper.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
     
-        BOOL gameOn = YES;
-        while(gameOn)
+        
+        NSString *result;
+        
+        ScoreKeeper *scoreKeeper = [[ScoreKeeper alloc] init];
+        
+        while(YES)
         {
             AdditionQuestion *question = [[AdditionQuestion alloc]init];
             
             
             NSLog(@"%@", [question question]);
-            char inputCString[255];
             
-            fgets(inputCString, 255, stdin);
-            NSString *result = [NSString stringWithCString:inputCString
-                                                  encoding:NSUTF8StringEncoding];
-            
-            //trim the newline
-            result = [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            InputHandler *input = [[InputHandler alloc]init];
+            result = [input getInput];
+
             
             //in case the user exit
             if ([result isEqualToString:@"quit"])
-                gameOn = NO;
+            {
+                break;
+            }
             
 //            NSLog(@"Input string %@", result);
             NSInteger userAnswer = [result integerValue];
             
             if (userAnswer == [question answer])
             {
+                scoreKeeper.rightAnswer++;
                 NSLog(@"Right!");
             }
             else
             {
+                scoreKeeper.wrongAnswer++;
                 NSLog(@"Wrong!");
 
             }
             
 
         }
+        [scoreKeeper printScore];
         
     }
     return 0;
