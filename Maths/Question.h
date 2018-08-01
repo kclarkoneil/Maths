@@ -1,5 +1,5 @@
 //
-//  AdditionQuestion.h
+//  Question.h
 //  Maths
 //
 //  Created by Bennett on 2018-07-31.
@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AdditionQuestion : NSObject
+@interface Question : NSObject
 
-@property (nonatomic) NSUInteger number1;
-@property (nonatomic) NSUInteger number2;
-@property (nonatomic) NSUInteger  answer;
+@property (nonatomic) NSInteger number1;
+@property (nonatomic) NSInteger number2;
+@property (nonatomic) NSInteger  answer;
+
 @property (nonatomic) NSString *question;
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;
