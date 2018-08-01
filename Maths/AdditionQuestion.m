@@ -16,8 +16,16 @@
         _number2 = arc4random_uniform(90) + 10;
         _question = [NSString stringWithFormat:@"What is %lu + %lu ?", _number1, _number2];
         _answer = _number1 + _number2;
+        _startTime = [NSDate date];
     }
     return self;
+}
+- (NSUInteger)answer {
+    _endTime = [NSDate date];
+    return _answer;
+}
+-(NSTimeInterval)answerTime {
+    return [_endTime timeIntervalSinceDate:_startTime];
 }
 
 @end

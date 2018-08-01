@@ -10,13 +10,14 @@
 #import "AdditionQuestion.h"
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
+#import "QuestionManager.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
     
         
         NSString *result;
-        
+        QuestionManager *answerTally = [[QuestionManager alloc] init];
         ScoreKeeper *scoreKeeper = [[ScoreKeeper alloc] init];
         
         while(YES)
@@ -50,10 +51,11 @@ int main(int argc, const char * argv[]) {
                 NSLog(@"Wrong!");
 
             }
-            
+            NSLog(@"%@", [answerTally timeOutput]);
 
         }
         [scoreKeeper printScore];
+    
         
     }
     return 0;
